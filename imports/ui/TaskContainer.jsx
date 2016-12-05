@@ -1,13 +1,12 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from "react-dom";
-import { compose } from "react-komposer";
 import Task from "./Task";
 import { Tasks } from "/imports/api/tasks";
+import { composeWithTracker } from "/imports/api/komposer";
 
 class TaskContainer extends Component {
 
     constructor(props) {
-        console.log("props", props);
         super(props);
         this.state = {};
     }
@@ -63,7 +62,6 @@ function composer(props, onData) {
     let tasks = [];
 
     if (taskSub.ready()) {
-      console.log("tasks were ready");
       tasks = Tasks.find({}).fetch();
     }
 
@@ -72,4 +70,4 @@ function composer(props, onData) {
     });
 }
 
-export default compose(composer)(TaskContainer)
+export default composeWithTracker(composer)(TaskContainer)
